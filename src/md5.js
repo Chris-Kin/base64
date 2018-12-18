@@ -12,7 +12,6 @@ function transfer(str) {
     }
     binarys += el.charCodeAt().toString(2).padStart(8, 0);
   });
-  console.log(binarys);
 
   // 将二进制每六位重组，并映射到baseChars的数组
   var newGroup = splitByLength(binarys, 6).map(el => {
@@ -41,6 +40,3 @@ function splitByLength(str, n) {
   }
   return ans;
 }
-
-var str = '啊';
-console.log(transfer(str), window.btoa(str));
