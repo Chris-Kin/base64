@@ -1,0 +1,22 @@
+{
+  "name": "base64",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attacking/base64.git"
+  },
+  "keywords": [
+    "base64"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/attacking/base64/issues"
+  },
+  "homepage": "https://github.com/attacking/base64#readme"
+}
