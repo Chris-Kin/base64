@@ -1,4 +1,14 @@
-var baseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+import config from './config';
+
+import util from './util';
+
+const {
+  baseChars,
+} = config;
+
+const {
+  splitByLength,
+} = util;
 
 function transfer(str) {
   // 原始字符对应的二进制
@@ -31,12 +41,4 @@ function transfer(str) {
   return newGroup.join('');
 }
 
-// 按固定长度切割字符串，返回数组
-function splitByLength(str, n) {
-  var arrLength = Math.ceil(str.length / n);
-  var ans = [];
-  for (var i = 0; i < arrLength; i++) {
-    ans.push(str.slice(n * i, n * (i + 1)));
-  }
-  return ans;
-}
+export default transfer;
