@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -95,7 +104,7 @@ module.exports =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_encode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/encode */ \"./src/encode.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"encode\", function() { return _src_encode__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n/* harmony import */ var _src_decode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/decode */ \"./src/decode.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"decode\", function() { return _src_decode__WEBPACK_IMPORTED_MODULE_1__[\"default\"]; });\n\n\n\n\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_encode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/encode */ \"./src/encode.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"encode\", function() { return _src_encode__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n/* harmony import */ var _src_decode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/decode */ \"./src/decode.js\");\n/* harmony import */ var _src_decode__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_src_decode__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, \"decode\", function() { return _src_decode__WEBPACK_IMPORTED_MODULE_1___default.a; });\n\n\n\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -115,11 +124,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*!***********************!*\
   !*** ./src/decode.js ***!
   \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ \"./src/config.js\");\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ \"./src/util.js\");\n\n\n\n\nconst {\n  baseChars\n} = _config__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\n\nconst {\n  splitByLength\n} = _util__WEBPACK_IMPORTED_MODULE_1__[\"default\"];\n\nfunction transfer(str) {\n  // 原始字符对应的二进制\n  var binarys = '';\n  [...str].forEach(el => {\n    // 判断中文字符，将一个Unicode编码（js默认编码）的中文转为UTF8的字节码\n    if (/[^\\x00-\\xff]/ig.test(el)) {\n      var hanzi = parseInt(encodeURI(el).replace(/%/g, ''), 16).toString(2);\n      binarys += hanzi;\n      return;\n    }\n    binarys += el.charCodeAt().toString(2).padStart(8, 0);\n  });\n\n  // 将二进制每六位重组，并映射到baseChars的数组\n  var newGroup = splitByLength(binarys, 6).map(el => {\n    if (el.length !== 6) {\n      el = el.padEnd(6, 0);\n    }\n    var index = parseInt(el, 2);\n    return baseChars[index];\n  });\n\n  // 补充等号\n  var padCount = 4 - newGroup.length % 4;\n  if (padCount !== 4) {\n    newGroup.push(...new Array(padCount).fill('='));\n  }\n\n  return newGroup.join('');\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (transfer);\n\n//# sourceURL=webpack:///./src/decode.js?");
+eval("\n\n//# sourceURL=webpack:///./src/decode.js?");
 
 /***/ }),
 
@@ -148,3 +156,4 @@ eval("__webpack_require__.r(__webpack_exports__);\n// 工具类文件\n\n/* harm
 /***/ })
 
 /******/ });
+});
